@@ -1,0 +1,142 @@
+:root{--pumpkin:#E8782A;--amber:#F4B04A;--cream:#FFF0D2;--rust:#B5482A;--bark:#4A2A1A;--moss:#8C9A3E;--ink:#1E1A1A}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:linear-gradient(180deg,#F7B955 0%,#F4B04A 45%,#E8782A 100%);background-attachment:fixed;min-height:100vh}
+#leaves{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+main,footer{position:relative;z-index:2}
+code{background:rgba(255,240,210,.7);padding:0 .35em;border-radius:6px}
+
+/* watercolour bars */
+.wash{position:absolute;inset:0;filter:url(#wash);pointer-events:none}
+.wash-top{background:radial-gradient(ellipse at 20% 40%,#FFE2A8 0,transparent 55%),radial-gradient(ellipse at 80% 30%,#F7C98B 0,transparent 55%),linear-gradient(180deg,#FFF0D2,#F9C987);bottom:-10px;opacity:.95;box-shadow:0 8px 24px rgba(181,72,42,.2)}
+.wash-bottom{background:radial-gradient(ellipse at 30% 60%,#E8782A 0,transparent 60%),radial-gradient(ellipse at 75% 50%,#B5482A 0,transparent 55%),linear-gradient(0deg,#F4B04A,#FFE2A8);top:-10px;opacity:.9}
+.nav-link{position:relative;padding:.1rem .2rem}
+.nav-link::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:6px;border-radius:6px;background:var(--pumpkin);opacity:.5;transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.nav-link:hover::after,.nav-link:focus-visible::after{transform:scaleX(1)}
+.cat-dot{width:22px;height:22px;background:var(--ink);border-radius:50% 50% 45% 45%;position:relative;display:inline-block}
+.cat-dot::before,.cat-dot::after{content:"";position:absolute;top:-6px;border:6px solid transparent;border-bottom:9px solid var(--ink)}
+.cat-dot::before{left:-1px;transform:rotate(-12deg)}.cat-dot::after{right:-1px;transform:rotate(12deg)}
+
+/* semi-transparent glass */
+.glass{background:rgba(255,240,210,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:2px solid rgba(255,255,255,.55);border-radius:32px;box-shadow:0 18px 50px rgba(181,72,42,.25)}
+.peek-cat{width:120px;position:absolute;top:-62px;left:50%;transform:translateX(-50%)}
+.eyes{transform-origin:60px 42px;animation:blink 5s infinite}
+@keyframes blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
+.about-cat{width:150px}
+
+.btn{padding:.75rem 1.5rem;border-radius:999px;font-weight:700;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-3px)}
+.btn-solid{background:var(--rust);color:var(--cream);box-shadow:0 6px 0 #7e2f19}
+.btn-soft{background:rgba(255,255,255,.6);color:var(--bark);border:2px solid var(--bark)}
+
+.section{max-width:72rem;margin:0 auto;padding:5rem 1.5rem}
+.section-title{font-family:'Caveat',cursive;font-size:3.25rem;text-align:center;color:var(--bark);margin-bottom:.25rem}
+.section-sub{text-align:center;margin-bottom:2.5rem;opacity:.85}
+
+/* art cards: a little tilt like pinned paper */
+.art-card{background:var(--cream);padding:.9rem .9rem 1.2rem;border-radius:16px;box-shadow:0 12px 28px rgba(74,42,26,.25);transition:transform .3s}
+.art-card:nth-child(3n+1){transform:rotate(-1.5deg)}.art-card:nth-child(3n+2){transform:rotate(1deg)}.art-card:nth-child(3n){transform:rotate(-.5deg)}
+.art-card:hover{transform:rotate(0) translateY(-6px) scale(1.02)}
+
+/* frame: fixed shape for the cat placeholder only */
+.art-card .frame{aspect-ratio:4/3;border-radius:12px;overflow:hidden;background:linear-gradient(135deg,#F9C987,#E8782A);display:grid;place-items:center}
+
+/* once a real drawing is added, the frame fits the drawing, so nothing is cropped */
+.art-card .frame:has(img){aspect-ratio:auto;background:var(--cream)}
+.art-card img{width:100%;height:auto;max-height:520px;object-fit:contain;display:block}
+
+.art-card h3{font-family:'Caveat',cursive;font-size:1.7rem;margin-top:.6rem;color:var(--rust)}
+.art-card p{font-size:.95rem}
+.placeholder-cat{width:42%;opacity:.9}
+
+/* cards keep their own height instead of stretching to match the tallest one in the row */
+#art-grid{align-items:start}
+
+.dropzone{display:flex;flex-direction:column;align-items:center;gap:.25rem;padding:2.5rem 1rem;border:3px dashed var(--rust);border-radius:28px;background:rgba(255,240,210,.5);cursor:pointer;transition:background .2s,transform .2s;text-align:center}
+.dropzone:hover,.dropzone.drag,.dropzone:focus-within{background:rgba(255,240,210,.85);transform:scale(1.01)}
+.anim-card{background:var(--cream);padding:.8rem;border-radius:20px;box-shadow:0 12px 28px rgba(74,42,26,.25)}
+.anim-card video,.anim-card img{width:100%;border-radius:12px;display:block;background:var(--ink)}
+.anim-card figcaption{display:flex;justify-content:space-between;align-items:center;padding:.6rem .3rem 0;font-weight:700}
+.anim-card button{background:none;border:0;color:var(--rust);font-weight:700;cursor:pointer;text-decoration:underline}
+
+.contact-list{max-width:34rem;margin:2rem auto 0;display:grid;gap:1rem}
+.contact-list li{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;background:rgba(255,240,210,.65);border:2px solid rgba(255,255,255,.6);border-radius:20px;padding:1.1rem 1.4rem}
+.contact-list span{font-family:'Caveat',cursive;font-size:1.7rem;color:var(--rust)}
+.contact-list a{font-weight:700;align-self:center;text-decoration:underline;text-decoration-color:var(--pumpkin);text-underline-offset:4px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--bark);outline-offset:3px;border-radius:6px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* about image: shows your picture, or a dashed placeholder until you add one */
+.about-photo{width:190px;height:190px;margin:0 auto;border-radius:50% 50% 46% 46%;overflow:hidden;background:rgba(255,255,255,.5);border:4px solid var(--cream);box-shadow:0 10px 24px rgba(74,42,26,.25);display:grid;place-items:center}
+.about-photo img{width:100%;height:100%;object-fit:cover}
+.about-photo figcaption{display:none}
+.about-photo.empty{border:3px dashed var(--rust);border-radius:28px;padding:1rem;text-align:center;font-size:.9rem}
+.about-photo.empty figcaption{display:block}
+
+/* changing background: two stacked layers that crossfade */
+#bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+#bg::after{content:"";position:absolute;inset:0;background:rgba(244,176,74,.28)} /* warm tint keeps text readable; lower the .28 to show images brighter */
+.bg-layer{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.8s ease-in-out}
+.bg-layer.show{opacity:1}
+
+.ticker {
+  overflow: hidden;
+  white-space: nowrap;
+  background: #c2410c;              /* burnt orange: change to match your palette */
+  color: #fff7ed;
+  border-top: 3px solid #7c2d12;
+  border-bottom: 3px solid #7c2d12;
+  padding: 0.9rem 0;
+}
+
+.ticker-track {
+  display: inline-flex;
+  width: max-content;
+  animation: ticker-scroll 25s linear infinite;   /* higher = slower */
+}
+
+.ticker:hover .ticker-track {
+  animation-play-state: paused;                   /* pause on hover */
+}
+
+.ticker-group {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.ticker-item {
+  font-family: 'Caveat', cursive;  
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0 1.5rem;
+}
+
+.ticker-dot {
+  font-size: 1.4rem;
+}
+
+/* Each letter wobbles, offset by its index */
+.wobble span {
+  display: inline-block;
+  animation: wobble 1.2s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 80ms);
+}
+
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }           /* moves right → left */
+}
+
+@keyframes wobble {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25%      { transform: translateY(-5px) rotate(-4deg); }
+  75%      { transform: translateY(5px) rotate(4deg); }
+}
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track { animation-duration: 80s; }
+  .wobble span  { animation: none; }
+}

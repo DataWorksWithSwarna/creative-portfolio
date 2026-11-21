@@ -140,3 +140,22 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--bark);outline-offse
   .ticker-track { animation-duration: 80s; }
   .wobble span  { animation: none; }
 }
+
+/* Animation cards: a little tilt like pinned paper */
+.anim-card {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.anim-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  margin-bottom: 0.75rem;
+}

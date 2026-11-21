@@ -84,17 +84,27 @@
     </section>
 
     <!-- DIGITAL -->
-    <section id="digital" class="section">
-      <h2 class="section-title">Digital animations</h2>
-      <p class="section-sub">Here are some of my animations which I made.</p>
-      <label id="dropzone" class="dropzone" for="file-input">
-        <span class="font-hand text-3xl text-rust">Drop animations here</span>
-        <span>or click to choose files</span>
-        <input id="file-input" type="file" accept="video/*,image/gif,image/*" multiple class="sr-only" />
-      </label>
-      <div id="anim-grid" class="grid gap-8 sm:grid-cols-2 mt-10"></div>
-      <p id="anim-empty" class="text-center mt-8 opacity-70">No animations yet. Your uploads will show up here.</p>
-    </section>
+<section id="digital" class="section">
+  <h2 class="section-title">Digital animations</h2>
+  <p class="section-sub">A few of my favourite digital animations.</p>
+
+  <div class="anim-list flex flex-col items-center gap-10 mt-10">
+
+    <!-- Animation card (copy this block for each new animation) -->
+    <article class="anim-card">
+      <img src="assets/art1.gif" alt="Cat animation 1" loading="lazy" />
+      <h3 class="font-hand text-2xl text-rust">Architectural design</h3>
+      <p>One of my earliest digital creations.These designs showcase my transition from hand-drawn to digital art. The intricate details and geometric patterns reflect my growing skills in digital design.</p>
+    </article>
+
+    <article class="anim-card">
+      <img src="assets/art2.gif" alt="Cat animation 2" loading="lazy" />
+      <h3 class="font-hand text-2xl text-rust">A small story</h3>
+      <p>This is a simple story animation that I created to practice my digital art skills and storytelling. I tried a simplistic approach to convey emotion and narrative through movement and still frames.</p>
+    </article>
+
+  </div>
+</section>
 
     <!-- ABOUT -->
     <section id="about" class="section">

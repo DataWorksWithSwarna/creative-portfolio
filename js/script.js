@@ -22,37 +22,6 @@ artGrid.innerHTML = artworks.map(a => `
     <h3>${a.title}</h3><p>${a.note}</p>
   </article>`).join('');
 
-/* ---------- 2. ANIMATION UPLOADS ----------
-   Files are shown straight from your browser (nothing is sent anywhere).
-   They reset on refresh; for permanent ones, drop files in /assets and add them to a list like above. */
-const input = document.getElementById('file-input');
-const zone = document.getElementById('dropzone');
-const animGrid = document.getElementById('anim-grid');
-const emptyMsg = document.getElementById('anim-empty');
-
-function addFiles(files) {
-    [...files].forEach(file => {
-        const isVideo = file.type.startsWith('video/');
-        const isImage = file.type.startsWith('image/');
-        if (!isVideo && !isImage) return;
-        const url = URL.createObjectURL(file);
-        const fig = document.createElement('figure');
-        fig.className = 'anim-card';
-        fig.innerHTML = (isVideo
-            ? `<video src="${url}" controls loop muted playsinline></video>`
-            : `<img src="${url}" alt="${file.name}">`) +
-            `<figcaption><span>${file.name.replace(/\.[^.]+$/, '')}</span><button type="button">Remove</button></figcaption>`;
-        fig.querySelector('button').onclick = () => { URL.revokeObjectURL(url); fig.remove(); toggleEmpty(); };
-        animGrid.appendChild(fig);
-    });
-    toggleEmpty();
-}
-const toggleEmpty = () => emptyMsg.style.display = animGrid.children.length ? 'none' : 'block';
-
-input.addEventListener('change', e => { addFiles(e.target.files); input.value = ''; });
-['dragenter', 'dragover'].forEach(ev => zone.addEventListener(ev, e => { e.preventDefault(); zone.classList.add('drag'); }));
-['dragleave', 'drop'].forEach(ev => zone.addEventListener(ev, e => { e.preventDefault(); zone.classList.remove('drag'); }));
-zone.addEventListener('drop', e => addFiles(e.dataTransfer.files));
 
 /* ---------- 3. HERO ENTRANCE (GSAP) ---------- */
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
